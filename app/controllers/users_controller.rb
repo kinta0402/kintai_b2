@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new # ユーザーオブジェクトを生成し、インスタンス変数に代入します。
   end
-  
+
   def create
     # @user = User.new(params[:user]) 5.5.2
     @user = User.new(user_params)
@@ -38,6 +38,7 @@ class UsersController < ApplicationController
     # @user = User.find(params[:id])
   end
   
+  # ユーザー情報更新
   def update
     # @user = User.find(params[:id])
     if @user.update_attributes(user_params)
@@ -56,14 +57,25 @@ class UsersController < ApplicationController
   
   def edit_basic_info
   end
-
+  
+  # ユーザー基本勤怠情報更新
   def update_basic_info
+    if @user.update_attributes(basic_info_params)
+      flash[:success] = "#{@user.name}の基本情報を更新しました。"
+    else
+      flash[:danger] = "#{@user.name}の更新は失敗しました。<br>" + @user.errors.full_messages.join("<br>")
+    end
+    redirect_to users_url
   end
   
   private
 
     def user_params # 5.5.3
       params.require(:user).permit(:name, :email, :department, :password, :password_confirmation)
+    end
+    
+    def basic_info_params
+      params.require(:user).permit(:department, :basic_time, :work_time)
     end
     
     # beforeフィルター
