@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     # 10.2
     # @first_day = Date.current.beginning_of_month  10.3 → application_contにて定義の為
     # @last_day = @first_day.end_of_month
+    @worked_sum = @attendances.where.not(started_at: nil).count # 10.7
   end
   
   def new
