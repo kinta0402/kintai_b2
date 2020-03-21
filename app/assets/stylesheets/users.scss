@@ -61,3 +61,18 @@
   margin: 15px 0;
   width: 30%;
 }
+
+.search-logo {
+  font-weight: bold;
+  text-align: right;
+  margin-right: 120px;
+}
+
+/* 検索のtext_field_tagの大きさ */
+
+#search-block {
+  input[type="text"] {
+    width: 174px;
+    height: 32px;
+  }
+}
