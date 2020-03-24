@@ -31,9 +31,9 @@ class AttendancesController < ApplicationController
   def edit_one_month
   end
 
-  def update_one_month
+  def update_one_month # テスト仕様書NO9.21により下記より変更
     ActiveRecord::Base.transaction do
-      if attendances_invalid?
+      if attendances_invalid? # attendances_helperにて定義
         attendances_params.each do |id, item|
           attendance = Attendance.find(id)
           attendance.update_attributes!(item)
@@ -49,7 +49,7 @@ class AttendancesController < ApplicationController
       flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
       redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end
-  # 11.3.2 11.2付近参照 ※よく考えれば理解できそう!!
+  # 11.3.2 11.2付近参照 ※よく考えれば理解できそう!!  
   # def update_one_month
   #   ActiveRecord::Base.transaction do # トランザクションを開始します。
   #     attendances_params.each do |id, item|

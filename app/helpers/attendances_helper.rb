@@ -17,7 +17,7 @@ module AttendancesHelper
     format("%.2f", (((finish - start) / 60) / 60.0))
   end
   
-     # 不正な値があるか確認する
+     # 不正な値があるか確認する 旧勤怠_10章_不正な値があるか確認する項参照
   def attendances_invalid?
     attendances = true
     attendances_params.each do |id, item|
