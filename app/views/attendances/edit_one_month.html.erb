@@ -27,7 +27,8 @@
                   <%= $days_of_the_week[day.worked_on.wday] %>
                 <% end %>
               </td>
-              <% if !current_user.admin? && (Date.current < day.worked_on) %> <!-- 11.3.3 -->
+              <%# if !current_user.admin? && (Date.current < day.worked_on) %> <!-- 11.3.3 B仕様書No22より下記へ-->
+              <% if Date.current < day.worked_on %>
                 <td><%= attendance.time_field :started_at, readonly: true, class: "form-control" %></td>
                 <td><%= attendance.time_field :finished_at, readonly: true, class: "form-control" %></td>
               <% else %>
